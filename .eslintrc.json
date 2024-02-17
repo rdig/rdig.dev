@@ -1,0 +1,8 @@
+{
+  "plugins": ["@stylistic/js"],
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "@stylistic/js/semi": ["error", "always"],
+    "@stylistic/js/indent": ["error", 2]
+  }
+}
