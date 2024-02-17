@@ -2,7 +2,29 @@ import Image from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
 const components = {
-  Image: (props: any) => <Image alt={props.alt} {...props} />,
+  Image: (props: any) => {
+    const sanitizedProps = { ...props };
+    delete sanitizedProps.width;
+    delete sanitizedProps.height;
+    const { alt, className } = sanitizedProps;
+    return (
+      <Image
+        className={`!static ${className ?? ''}`}
+        alt={alt}
+        fill
+        {...sanitizedProps}
+      />
+    );
+  },
+  a: (props: any) => {
+    /*
+     * Poor man's attempt at distinguishing internal and external links.
+     */
+    if (props.href.startsWith("/")) {
+      return <a className="dark:text-sky-500 text-sky-600 font-bold" {...props} />;
+    }
+    return <a className="dark:text-sky-500 text-sky-600 font-bold" {...props} target="_blank" rel="noopener noreferrer" />;
+  },
 };
 
 interface MdxProps {
