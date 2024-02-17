@@ -1,5 +1,6 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -54,5 +55,13 @@ export default makeSource({
   documentTypes: [Post, Page],
   mdx: {
     remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      [
+        rehypePrettyCode, {
+          theme: "one-dark-pro",
+          defaultLang: "plaintext",
+        },
+      ]
+    ],
   },
 });
