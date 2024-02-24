@@ -1,0 +1,12 @@
+span[data-rehype-pretty-code-figure] code {
+  padding: 3px 6px 2px;
+  border-radius: 6px;
+}
+
+span[data-rehype-pretty-code-figure] code::before {
+  content: none;
+}
+
+span[data-rehype-pretty-code-figure] code::after {
+  content: none;
+}
