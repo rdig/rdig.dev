@@ -19,19 +19,32 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`antialiased min-h-screen bg-white dark:bg-stone-900 text-stone-900 dark:text-slate-50 ${inter.className}`}
+        className={`antialiased min-h-screen bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-slate-50 ${inter.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
-          <div className="max-w-2xl mx-auto py-10 px-4">
-            <header>
-              <div className="flex items-center justify-between">
-                <ModeToggle />
-                <nav className="ml-auto text-sm font-medium space-x-6">
-                  <Link href="/">Home</Link>
-                </nav>
+          <div>
+            <header className="bg-zinc-100 dark:bg-zinc-950">
+              <div className="max-w-2xl mx-auto py-20 px-4">
+                <div className="flex items-center justify-between">
+                  <ModeToggle />
+                  <nav className="ml-auto text-sm font-medium space-x-6">
+                    <Link href="/">Home</Link>
+                  </nav>
+                </div>
               </div>
             </header>
-            <main>{children}</main>
+            <div className="max-w-2xl mx-auto py-10 px-4">
+              <main>{children}</main>
+            </div>
+            <footer className="bg-white dark:bg-black">
+              <div className="max-w-2xl mx-auto py-40 px-4">
+                <div className="flex items-center justify-between">
+                  <nav className="ml-auto text-sm font-medium space-x-6">
+                    <Link href="/">Home</Link>
+                  </nav>
+                </div>
+              </div>
+            </footer>
           </div>
         </ThemeProvider>
       </body>
