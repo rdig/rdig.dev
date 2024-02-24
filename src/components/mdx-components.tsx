@@ -28,8 +28,9 @@ const components = {
       <div className="my-8 max-w-6xl mx-auto">
         <a href={src} target="_blank" title={alt || caption}>
           <Image
-            className={`!static ${className ?? ''} rounded-md my-0`}
+            className={`!relative ${className ?? ''} rounded-md my-0`}
             alt={alt || caption}
+            priority={false}
             fill
             {...sanitizedProps}
           />
