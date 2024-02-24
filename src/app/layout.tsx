@@ -23,7 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`antialiased min-h-screen bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-slate-50 ${notoSans.className}`}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" enableSystem>
           <div>
             <Header />
             <main className="prose dark:prose-invert max-w-none">{children}</main>
