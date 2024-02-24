@@ -6,14 +6,19 @@ const components = {
     const sanitizedProps = { ...props };
     delete sanitizedProps.width;
     delete sanitizedProps.height;
-    const { alt, className } = sanitizedProps;
+    const { alt, className, src, caption } = sanitizedProps;
     return (
-      <Image
-        className={`!static ${className ?? ''}`}
-        alt={alt}
-        fill
-        {...sanitizedProps}
-      />
+      <div className="my-8">
+        <a href={src} target="_blank" title={caption || alt}>
+          <Image
+            className={`!static ${className ?? ''} rounded-md my-0`}
+            alt={alt}
+            fill
+            {...sanitizedProps}
+          />
+        </a>
+        {(caption || alt) && <span className="text-sm italic text-zinc-500 dark:text-zinc-400">{caption || alt}</span>}
+      </div>
     );
   },
   a: (props: any) => {
