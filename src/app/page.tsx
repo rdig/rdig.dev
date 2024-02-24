@@ -54,15 +54,18 @@ export default function Home() {
         </h2>
       )}
 
-      {sortedPosts.map(post => (
-        <article key={post._id}>
-          <Link href={post.slug} className="no-underline hover:underline">
-            <h3 className="inline">{post.title}</h3>
-          </Link>
-          <p>{post.description || generateExcerpt(post.body.raw)}</p>
-          <p>{post.displayDate?.toDateString() || getFileBirthdate(post._raw.sourceFilePath).toDateString()}</p>
-        </article>
-      ))}
+      {sortedPosts.map(post => {
+        const date = post.displayDate || getFileBirthdate(post._raw.sourceFilePath);
+        return (
+          <article key={post._id}>
+            <Link href={post.slug} className="no-underline hover:underline">
+              <h3 className="inline">{post.title}</h3>
+            </Link>
+            <p>{post.description || generateExcerpt(post.body.raw)}</p>
+            <time dateTime={date.toString()}>{date.toDateString()}</time>
+          </article>
+        );
+      })}
     </div>
   );
 }
