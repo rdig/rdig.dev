@@ -21,9 +21,9 @@ const components = {
      * Poor man's attempt at distinguishing internal and external links.
      */
     if (props.href.startsWith("/")) {
-      return <a className="dark:text-sky-500 text-sky-600 font-bold" {...props} />;
+      return <a {...props} />;
     }
-    return <a className="dark:text-sky-500 text-sky-600 font-bold" {...props} target="_blank" rel="noopener noreferrer" />;
+    return <a {...props} target="_blank" rel="noopener noreferrer" />;
   },
 };
 
