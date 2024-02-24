@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { Noto_Sans } from "next/font/google";
 
 import { ThemeProvider } from "@components/theme-provider";
 import Header from "@components/header";
+import Footer from "@components/footer";
 
 import "./globals.css";
 
@@ -27,15 +27,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div>
             <Header />
             <main className="prose dark:prose-invert max-w-none">{children}</main>
-            <footer className="bg-white dark:bg-black mt-20">
-              <div className="max-w-3xl mx-auto py-40 px-4">
-                <div className="flex items-center justify-between">
-                  <nav className="ml-auto text-sm font-medium space-x-6">
-                    <Link href="/">Home</Link>
-                  </nav>
-                </div>
-              </div>
-            </footer>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>
