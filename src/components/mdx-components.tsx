@@ -26,15 +26,15 @@ const components = {
     const { alt, className, src, caption } = sanitizedProps;
     return (
       <div className="my-8 max-w-6xl mx-auto">
-        <a href={src} target="_blank" title={caption || alt}>
+        <a href={src} target="_blank" title={alt || caption}>
           <Image
             className={`!static ${className ?? ''} rounded-md my-0`}
-            alt={alt}
+            alt={alt || caption}
             fill
             {...sanitizedProps}
           />
         </a>
-        {(caption || alt) && <p className="text-sm italic text-zinc-500 dark:text-zinc-400 my-0 mt-1 text-center">{caption || alt}</p>}
+        {(caption) && <figcaption className="text-sm italic text-zinc-500 dark:text-zinc-400 my-0 mt-1 text-center">{caption}</figcaption>}
       </div>
     );
   },
