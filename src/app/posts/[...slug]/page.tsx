@@ -2,20 +2,31 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
 import { Metadata } from "next";
-import { Mdx } from "@components/mdx-components";
+import Article from "@components/article";
+import { PostStatus } from "@types";
 
 interface PostProps {
   params: {
-    slug: string[]
+    slug: string[],
+  },
+  searchParams: {
+    viewkey?: string,
   }
 }
 
-async function getPostFromParams(params: PostProps["params"]) {
+async function getPostFromParams(
+  params: PostProps["params"],
+  query?: PostProps["searchParams"],
+) {
   const slug = params?.slug?.join("/");
   const post = allPosts.find((post) => post.slugAsParams === slug);
 
   if (!post) {
     null;
+  }
+
+  if (post?.status === PostStatus.Draft && query?.viewkey !== process.env.VIEWKEY) {
+    return null;
   }
 
   return post;
@@ -42,24 +53,14 @@ export async function generateStaticParams(): Promise<PostProps["params"][]> {
   }));
 }
 
-export default async function PostPage({ params }: PostProps) {
-  const post = await getPostFromParams(params);
+export default async function PostPage({ params, searchParams: query }: PostProps) {
+  const post = await getPostFromParams(params, query);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <article className="py-14 text-base prose dark:prose-invert prose-a:text-sky-600 dark:prose-a:text-sky-500 prose-a:font-bold prose-code:text-[0.84rem]">
-      <section className="mb-20">
-        <h1 className="mb-2">{post.title}</h1>
-        {post.description && (
-          <p className="text-xl mt-0 text-e-700 dark:text-slate-200">
-            {post.description}
-          </p>
-        )}
-      </section>
-      <Mdx code={post.body.code} />
-    </article>
+    <Article post={post} />
   );
 }
