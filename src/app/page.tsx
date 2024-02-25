@@ -17,7 +17,7 @@ const generateExcerpt = (text: string) => {
   return excerpt;
 };
 
-const getFileBirthdate = (filePath: string) => {
+export const getFileBirthdate = (filePath: string) => {
   const { birthtime = 0 } = fs.statSync(`content/${filePath}`);
   return new Date(birthtime);
 };
@@ -46,26 +46,32 @@ export default function Home() {
 
   return (
     <div>
-      {latestPost  && <Article post={latestPost} />}
+      {latestPost  && <Article post={latestPost} showMetadata={false} />}
 
       {(sortedPosts.length > 0) && (
-        <h2 className={`text-yellow-600 dark:text-yellow-700 ${playfair.className}`}>
-          Read More
-        </h2>
-      )}
+        <section className="py-10 pb-24 mt-24 bg-zinc-200 dark:bg-zinc-950 mb-[-7rem]">
+          <div className="max-w-3xl mx-auto">
 
-      {sortedPosts.map(post => {
-        const date = post.displayDate || getFileBirthdate(post._raw.sourceFilePath);
-        return (
-          <article key={post._id}>
-            <Link href={post.slug} className="no-underline hover:underline">
-              <h3 className="inline">{post.title}</h3>
-            </Link>
-            <p>{post.description || generateExcerpt(post.body.raw)}</p>
-            <time dateTime={date.toString()}>{date.toDateString()}</time>
-          </article>
-        );
-      })}
+            <h2 className={`mb-14 text-yellow-600 dark:text-yellow-700 ${playfair.className}`}>
+              Read More
+            </h2>
+
+            {sortedPosts.map((post, index) => {
+              return (
+                <div key={post._id}>
+                  <article>
+                    <Link href={post.slug} className="no-underline hover:underline active:opacity-80">
+                      <h3 className="inline text-3xl font-light tracking-tight">{post.title}</h3>
+                    </Link>
+                    <p>{post.description || generateExcerpt(post.body.raw)}</p>
+                  </article>
+                  {index < sortedPosts.length - 1 && (<hr className="max-w-[6rem] py-0 border-zinc-400" />)}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
