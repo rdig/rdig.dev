@@ -23,8 +23,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div>
-            <header className="bg-zinc-100 dark:bg-zinc-950">
-              <div className="max-w-2xl mx-auto py-20 px-4">
+            <header className="bg-zinc-200 dark:bg-zinc-950">
+              <div className="max-w-3xl mx-auto py-20 px-4">
                 <div className="flex items-center justify-between">
                   <ModeToggle />
                   <nav className="ml-auto text-sm font-medium space-x-6">
@@ -33,11 +33,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 </div>
               </div>
             </header>
-            <div className="max-w-2xl mx-auto py-10 px-4">
-              <main>{children}</main>
-            </div>
-            <footer className="bg-white dark:bg-black">
-              <div className="max-w-2xl mx-auto py-40 px-4">
+            <main className="prose dark:prose-invert max-w-none">{children}</main>
+            <footer className="bg-white dark:bg-black mt-20">
+              <div className="max-w-3xl mx-auto py-40 px-4">
                 <div className="flex items-center justify-between">
                   <nav className="ml-auto text-sm font-medium space-x-6">
                     <Link href="/">Home</Link>

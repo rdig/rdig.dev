@@ -30,7 +30,7 @@ export default function Home() {
   const latestPost = sortedPosts.shift();
 
   return (
-    <div className="prose dark:prose-invert">
+    <div>
       {latestPost  && <Article post={latestPost} />}
 
       {(sortedPosts.length > 0) && (
