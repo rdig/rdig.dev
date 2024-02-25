@@ -4,6 +4,7 @@ import { allPosts } from "contentlayer/generated";
 import { Metadata } from "next";
 import Article from "@components/article";
 import { PostStatus } from "@types";
+import { generatePageMetadata } from "@/layout";
 
 interface PostProps {
   params: {
@@ -41,10 +42,7 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
-    title: post.title,
-    description: post.description,
-  };
+  return generatePageMetadata(post.title, post.description);
 }
 
 export async function generateStaticParams(): Promise<PostProps["params"][]> {

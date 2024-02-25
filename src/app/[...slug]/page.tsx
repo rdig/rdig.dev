@@ -3,6 +3,7 @@ import { Metadata } from "next";
 
 import { allPages } from "contentlayer/generated";
 import { Mdx } from "@components/mdx-components";
+import { generatePageMetadata } from "@/layout";
 
 interface PageProps {
   params: {
@@ -30,10 +31,7 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
-    title: page.title,
-    description: page.description,
-  };
+  return generatePageMetadata(page.title, page.description);
 }
 
 export async function generateStaticParams(): Promise<PageProps["params"][]> {
