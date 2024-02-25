@@ -23,7 +23,8 @@
       "@components/*": ["./src/components/*"],
       "contentlayer/generated": [
         "./.contentlayer/generated"
-      ]
+      ],
+      "@types": ["./src/types/index.ts"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".contentlayer/generated"],

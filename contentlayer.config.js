@@ -44,7 +44,15 @@ export const Post = defineDocumentType(() => ({
     },
     date: {
       type: "date",
-      required: true,
+    },
+    createdAt: {
+      type: "date",
+    },
+    updatedAt: {
+      type: "date",
+    },
+    status: {
+      type: "string",
     },
   },
   computedFields,
