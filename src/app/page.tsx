@@ -1,11 +1,26 @@
+import fs from 'fs';
 import { allPosts } from "contentlayer/generated";
 import Link from "next/link";
-import { Inter, Noto_Sans, Playfair_Display } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 
 import Article from "@components/article";
 import { PostStatus } from "@types";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
+
+const generateExcerpt = (text: string) => {
+  if (!text) {
+    return "";
+  }
+  const textLength = text.length;
+  const excerpt = `${text.slice(0, 100)}${textLength > 100 ? " ..." : ""}`;
+  return excerpt;
+};
+
+const getFileBirthdate = (filePath: string) => {
+  const { birthtime = 0 } = fs.statSync(`content/${filePath}`);
+  return new Date(birthtime);
+};
 
 export default function Home() {
   const sortedPosts = [...allPosts]
@@ -44,8 +59,8 @@ export default function Home() {
           <Link href={post.slug} className="no-underline hover:underline">
             <h3 className="inline">{post.title}</h3>
           </Link>
-          {post.description && <p>{post.description}</p>}
-          {post.displayDate && <p>{post.displayDate.toDateString()}</p>}
+          <p>{post.description || generateExcerpt(post.body.raw)}</p>
+          <p>{post.displayDate?.toDateString() || getFileBirthdate(post._raw.sourceFilePath).toDateString()}</p>
         </article>
       ))}
     </div>
