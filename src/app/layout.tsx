@@ -20,9 +20,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased min-h-screen bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-slate-50 ${notoSans.className}`}
-      >
+      <body className={`antialiased min-h-screen bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-slate-50 ${notoSans.className}`}>
         <ThemeProvider attribute="class" enableSystem>
           <div>
             <Header />

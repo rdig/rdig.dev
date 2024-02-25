@@ -13,7 +13,7 @@ const Footer = () => (
       <Image className="w-16 mx-auto" src={logo} alt="Raul Glogovețan Logo" priority />
     </div>
     <footer className="bg-white dark:bg-black">
-      <address className="hidden"><a rel="author" href="/about-raul-glogovetan">Raul Glogovețan</a></address>
+      <address className="hidden"><Link rel="author" href="/about-raul-glogovetan">Raul Glogovețan</Link></address>
       <div className="max-w-3xl mx-auto py-32 px-4">
         <div className="flex items-center justify-between">
           <div className="">
