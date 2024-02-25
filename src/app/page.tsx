@@ -52,7 +52,7 @@ export default function Home() {
         <section className="py-10 pb-24 mt-24 bg-zinc-200 dark:bg-zinc-950 mb-[-7rem]">
           <div className="max-w-3xl mx-auto">
 
-            <h2 className={`mb-14 text-yellow-600 dark:text-yellow-700 ${playfair.className}`}>
+            <h2 className={`mb-14 text-zinc-400 dark:text-zinc-600 text-3xl font-light tracking-tight `}>
               Read More
             </h2>
 
@@ -60,12 +60,14 @@ export default function Home() {
               return (
                 <div key={post._id}>
                   <article>
-                    <Link href={post.slug} className="no-underline hover:underline active:opacity-80">
-                      <h3 className="inline text-3xl font-light tracking-tight">{post.title}</h3>
+                    <Link href={post.slug} className="no-underline decoration-yellow-600 dark:decoration-yellow-700 hover:underline active:opacity-80">
+                      <h3 className={`inline text-2xl text-yellow-600 dark:text-yellow-700 ${playfair.className}`}>
+                        {post.title}
+                      </h3>
                     </Link>
                     <p>{post.description || generateExcerpt(post.body.raw)}</p>
                   </article>
-                  {index < sortedPosts.length - 1 && (<hr className="max-w-[6rem] py-0 border-zinc-400" />)}
+                  {index < sortedPosts.length - 1 && (<hr className="max-w-[6rem] py-0 border-zinc-600" />)}
                 </div>
               );
             })}
