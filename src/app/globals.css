@@ -1,4 +1,23 @@
 @tailwind base;
-@import "./syntax-highlighting.css";
+
+@layer base {
+  /* Reset default font family to serif */
+  html,
+  :host {
+    font-family: theme('fontFamily.serif', ui-serif, system-ui, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-weight: 300;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
+
+@import "./syntax-highlighting.css";
+
+:root {
+  --color-accent: SteelBlue;
+}
+
+.dark {
+  --color-accent: CornflowerBlue;
+}

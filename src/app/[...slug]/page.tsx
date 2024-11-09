@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { allPages } from "contentlayer/generated";
 import { Mdx } from "@components/mdx-components";
 import { generatePageMetadata } from "@/layout";
+import PageLayout from "@components/page-layout";
 
 interface PageProps {
   params: {
@@ -48,11 +49,21 @@ export default async function PagePage({ params }: PageProps) {
   }
 
   return (
-    <article className="py-6 prose dark:prose-invert">
-      <h1>{page.title}</h1>
-      {page.description && <p className="text-xl">{page.description}</p>}
-      <hr />
-      <Mdx code={page.body.code} />
-    </article>
+    <PageLayout>
+      <article>
+        <section className={`mb-20`}>
+          <h1 className={`text-3xl font-medium`}>
+            {page.title}
+            {/* // Draft Status Label, only if in draft */}
+            {/* {post.status === PostStatus.Draft && (
+                <span className={`align-middle ml-4 p-1 px-3 rounded-full text-sm text-zinc-200 dark:text-zinc-950 bg-gray-400 dark:bg-gray-600 ${notoSans.className}`}>
+                  DRAFT
+                </span>
+              )} */}
+          </h1>
+        </section>
+        <Mdx code={page.body.code} />
+      </article>
+    </PageLayout>
   );
 }

@@ -1,6 +1,31 @@
+code[data-theme*=" "] {
+  padding: 1rem;
+  padding-right: 1.25rem;
+  margin: 0.75rem 0.5rem 1.5rem 0;
+  overflow-x: auto;
+}
+
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: WhiteSmoke;
+}
+
+html.dark code[data-theme*=" "],
+html.dark code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
 span[data-rehype-pretty-code-figure] code {
-  padding: 3px 6px 2px;
+  padding: 0px 6px 2px;
+  margin: 0 1px 0 2px;
   border-radius: 6px;
+}
+
+html.light span[data-rehype-pretty-code-figure] code,
+html.light span[data-rehype-pretty-code-figure] code span {
+  background-color: #f1f5f9; /* slate-100 */
 }
 
 span[data-rehype-pretty-code-figure] code::before {

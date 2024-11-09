@@ -30,9 +30,9 @@ export const Page = defineDocumentType(() => ({
   computedFields,
 }));
 
-export const Post = defineDocumentType(() => ({
-  name: "Post",
-  filePathPattern: `posts/**/*.mdx`,
+export const Article = defineDocumentType(() => ({
+  name: "Article",
+  filePathPattern: `articles/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -54,19 +54,25 @@ export const Post = defineDocumentType(() => ({
     status: {
       type: "string",
     },
+    category: {
+      type: "string",
+    },
   },
   computedFields,
 }));
 
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Post, Page],
+  documentTypes: [Article, Page],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       [
         rehypePrettyCode, {
-          theme: "one-dark-pro",
+          theme: {
+            dark: "one-dark-pro",
+            light: "light-plus",
+          },
           defaultLang: "plaintext",
         },
       ]

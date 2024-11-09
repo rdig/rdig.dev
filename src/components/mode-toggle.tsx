@@ -25,11 +25,13 @@ export function ModeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === Theme.Light ? Theme.Dark : Theme.Light)}
-      className="w-6 h-6 flex items-center justify-center active:opacity-80"
+      className="w-full sm:w-6 h-6 flex items-center active:opacity-80 mr-2 order-2 sm:order-3 justify-end"
       title="Toggle mode"
     >
       <span className="sr-only">Toggle mode</span>
-      {hasMounted && theme !== Theme.Dark ? <Moon /> : <Sun />}
+      {(hasMounted && theme !== Theme.Dark)
+        ? (<Moon />)
+        : (<Sun />)}
     </button>
   );
 }

@@ -6,30 +6,23 @@ import logo from '/public/logo-rdig.svg';
 
 const commitHash = childProcess.execSync('git rev-parse HEAD').toString().trim();
 
-
 const Footer = () => (
-  <>
-    <div className="relative mb-[-2rem] mt-20">
-      <Image className="w-16 mx-auto" src={logo} alt="Raul Glogovețan Logo" priority />
-    </div>
-    <footer className="bg-white dark:bg-black">
-      <address className="hidden"><Link rel="author" href="/about-raul-glogovetan">Raul Glogovețan</Link></address>
-      <div className="max-w-3xl mx-auto py-32 px-4">
-        <div className="flex items-center justify-between">
-          <div className="">
-            <p className="text-sm font-medium text-zinc-600 dark:text-zinc-500">© Raul Glogovețan</p>
-            <p className="mt-0 text-xs font-medium text-zinc-600 dark:text-zinc-500">All rights reserved</p>
-            <p className="mt-0 text-xs text-zinc-400 dark:text-zinc-800">{commitHash}</p>
+  <footer className="mb-20 max-w-3xl">
+    <address className="hidden">
+      <Link rel="author" href="/about-raul-glogovetan">Raul Glogovețan</Link>
+    </address>
+    <div className="">
+      <div>
+        <div className="flex items-center	">
+          <Image className="w-10 mr-2" src={logo} alt="Raul Glogovetan Logo" priority />
+          <div>
+            <p className="text-sm font-medium text-zinc-500">© Raul Glogovetan</p>
+            <p className="mt-0 text-xs text-zinc-400 dark:text-zinc-600">{commitHash}</p>
           </div>
-          <nav className="ml-auto text-sm font-medium space-x-6 dark:text-zinc-200">
-            <Link className="hover:underline active:opacity-80" target="_blank" rel="noopener noreferrer" href="https://github.com/rdig">Github</Link>
-            <Link className="hover:underline active:opacity-80" href="/">About</Link>
-            <Link className="hover:underline active:opacity-80" href="/">Contact</Link>
-          </nav>
         </div>
       </div>
-    </footer>
-  </>
+    </div>
+  </footer>
 );
 
 export default Footer;

@@ -9,7 +9,11 @@ const config: Config = {
   ],
   darkMode: ["class"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        accent: "var(--color-accent)",
+      }
+    },
   },
   plugins: [typographyPlugin],
 };

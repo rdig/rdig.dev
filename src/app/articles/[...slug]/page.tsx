@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
-import { allPosts } from "contentlayer/generated";
+import { allArticles } from "contentlayer/generated";
 
 import { Metadata } from "next";
 import Article from "@components/article";
+import PageLayout from "@components/page-layout";
 import { PostStatus } from "@types";
 import { generatePageMetadata } from "@/layout";
 
@@ -20,7 +21,7 @@ async function getPostFromParams(
   query?: PostProps["searchParams"],
 ) {
   const slug = params?.slug?.join("/");
-  const post = allPosts.find((post) => post.slugAsParams === slug);
+  const post = allArticles.find((article) => article.slugAsParams === slug);
 
   if (!post) {
     null;
@@ -46,19 +47,21 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams(): Promise<PostProps["params"][]> {
-  return allPosts.map((post) => ({
-    slug: post.slugAsParams.split("/"),
+  return allArticles.map((article) => ({
+    slug: article.slugAsParams.split("/"),
   }));
 }
 
 export default async function PostPage({ params, searchParams: query }: PostProps) {
-  const post = await getPostFromParams(params, query);
+  const article = await getPostFromParams(params, query);
 
-  if (!post) {
+  if (!article) {
     notFound();
   }
 
   return (
-    <Article post={post} />
+    <PageLayout>
+      <Article article={article} />
+    </PageLayout>
   );
 }
